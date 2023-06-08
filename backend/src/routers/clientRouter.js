@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const clientModel = require('../models/clientSchema');
+const authMiddleware = require('./authMiddleware ');
+
 
 // GET route to retrieve all clients
-router.get('/clients', async (req, res) => {
+router.get('/clients',authMiddleware , async (req, res) => {
     try {
         const clients = await clientModel.find();
         res.json(clients);

@@ -3,7 +3,10 @@ import './index.css'
 import logo from '../../../image/logo.png';
 import { BsBell } from "react-icons/bs";
 import { FaRegUserCircle } from "react-icons/fa"
+import {useNavigate } from 'react-router-dom';
+
 const Navigation = () => {
+  const navigate = useNavigate();
   return (
     <nav className="navigation">
       <div className="logo">
@@ -15,7 +18,7 @@ const Navigation = () => {
           <BsBell />
         </span>
           <span className="username">Irfan</span>
-          <span className='userIcon'><FaRegUserCircle /></span>
+          <span className='userIcon' onClick={()=>{navigate('/login')}}><FaRegUserCircle /></span>
 
       </div>
     </nav>

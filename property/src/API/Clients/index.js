@@ -1,8 +1,13 @@
 import { Clients } from '../Instance';
+import { getToken } from '../token-service/token';
 
 const getClients = async () => {
     try {
-        const response = await Clients.get('');
+        const response = await Clients.get('', {
+            headers: {
+                Authorization: getToken(),
+            }
+        });
         return response.data;
     } catch (error) {
         throw new Error(error);

@@ -1,10 +1,19 @@
+import { useEffect } from 'react';
 import Navigation from './Navigation';
 import Sidebar from './Sidebar';
 import './index.css';
 
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { getToken } from '../../API/token-service/token';
 
 const AdminLayout = () => {
+  const navigate = useNavigate()
+  useEffect(() => {
+    if (!getToken) {
+      navigate('/login');
+      return;
+    }
+  })
 
 
   return (
@@ -16,7 +25,7 @@ const AdminLayout = () => {
         <Sidebar />
       </aside>
       <main>
-          <Outlet />
+        <Outlet />
       </main>
     </div>
   );

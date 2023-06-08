@@ -50,7 +50,7 @@ const AddClient = () => {
     try {
       await axios.post('http://localhost:1111/clients/save', formData);
 
-      // sent msg to email
+      // // sent msg to email
       // emailjs.sendForm('service_280zd2g', 'template_steaaf9', form.current, 'Agq2Dn3kudKdBj_6R')
       // .then((result) => {
       //     console.log(result.text);

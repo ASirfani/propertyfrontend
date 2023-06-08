@@ -1,8 +1,13 @@
 import { Supplier } from '../Instance'
+import { getToken } from '../token-service/token';
 
 const getSupplier = async () => {
     try {
-        const response = await Supplier.get('');
+        const response = await Supplier.get('', {
+            headers: {
+                Authorization: getToken(),
+            }
+        });
         return response.data;
     } catch (error) {
         throw new Error(error);
@@ -34,7 +39,7 @@ const supplierLogin = async (supplier) => {
 
 
 
-const getSupplierById = async(supplierId) => {
+const getSupplierById = async (supplierId) => {
     try {
         const response = await Supplier.get(`/${supplierId}`);
         return response.data;
@@ -65,4 +70,4 @@ const deleteSupplier = async (supplierId) => {
 }
 
 
-export { getSupplier, createSupplier, updateSupplier, getSupplierById, deleteSupplier,supplierLogin };
+export { getSupplier, createSupplier, updateSupplier, getSupplierById, deleteSupplier, supplierLogin };

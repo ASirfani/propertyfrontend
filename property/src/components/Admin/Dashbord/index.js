@@ -36,7 +36,7 @@ const Dashboard = () => {
         id: 'basic-bar',
       },
       xaxis: {
-        categories: ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'],
+        categories: ['Sun','Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'],
       },
     },
     series: [

@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const Admin = require('../models/adminSchema');
+const jwtSecret = "abbasaliirfani";
+const jwt = require('jsonwebtoken');
+
+
 
 // GET route to retrieve all admins
 router.get('/admins', async (req, res) => {
@@ -44,20 +48,15 @@ router.post('/admin/login', async (req, res) => {
     const { username, password } = req.body;
     try {
       const admin = await Admin.findOne({username});
-  
-      if (!admin) {
-        return res.status(201).json({ message: 'Invalid credentials' });
+      if (admin && password === admin.password  ) {
+        const payload = {id:admin._id , name:admin.username}
+        const token = jwt.sign(payload , jwtSecret)
+        return res.json({ message: 'Login successful',token,type:'Bearar'});
       }
-      
-      const passwordMatch = password === admin.password;
-      
-      if (passwordMatch) {
-        return res.status(200).json({ message: 'Login successful' });
-      } else {
-        return res.json({ message: 'Invalid credentials' });
-      }
+    return res.status(403).json({ error: "Invalid Email or Password" });
     } catch (error) {
-      res.status(500).json({ message: error.message });
+        return res.status(500).json({ error: "Server Error" });
+
     }
   });
 
