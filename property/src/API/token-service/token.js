@@ -10,8 +10,7 @@ const getToken = () => {
 }
 
 const setToken = (token) => {
-    localStorage.getItem('token',JSON.stringify(token));
-
+    localStorage.getItem('token',token);
 }
 
 const cleanToken = () => {

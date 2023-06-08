@@ -1,20 +1,15 @@
 import axios from 'axios';
 import { getToken } from './token-service/token';
-const url = 'http://localhost:1111/'
 
-axios.interceptors.request.use((req)=>{
-    req.headers={
+axios.defaults.baseURL = "http://localhost:1111/"
+axios.interceptors.request.use((request)=>{
+    request.headers={
         Authorization: getToken(),
     }
-    return req;
+    return request;
 });
+export { axios };
 
-const Supplier = axios.create({
-    baseURL: `${url}suppliers`,
-});
 
-const Clients = axios.create({
-    baseURL: `${url}clients`
-})
 
-export { Clients ,Supplier };
+

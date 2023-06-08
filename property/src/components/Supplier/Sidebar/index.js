@@ -4,6 +4,7 @@ import { HiUserGroup } from "react-icons/hi";
 import { MdOutlineLogout } from "react-icons/md";
 import './index.css'
 import { NavLink, useNavigate } from 'react-router-dom';
+import { cleanToken } from '../../../API/token-service/token';
 
 const Sidebar = () => {
   const iconSize = 20;
@@ -28,6 +29,7 @@ const Sidebar = () => {
 
       </div>
       <div className='logout' onClick={() => {
+        cleanToken();
         navigate('/login');
       }}>
         <p>

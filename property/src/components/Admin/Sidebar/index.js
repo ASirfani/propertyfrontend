@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { AiOutlineCompass } from "react-icons/ai";
 import { ImUserTie } from "react-icons/im";
 import { CgMail } from "react-icons/cg";
@@ -8,6 +8,7 @@ import './index.css';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { getClients } from '../../../API/Clients'
 import { MyContext } from '../../Context/MyContext';
+import { cleanToken } from '../../../API/token-service/token';
 
 const Sidebar = () => {
   const iconSize = 20;
@@ -63,6 +64,7 @@ const Sidebar = () => {
 
       </div>
       <div className='logout' onClick={() => {
+        cleanToken();
         navigate('/login');
       }}>
         <p>

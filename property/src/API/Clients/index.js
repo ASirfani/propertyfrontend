@@ -1,13 +1,9 @@
-import { Clients } from '../Instance';
-import { getToken } from '../token-service/token';
+import { axios } from '../Instance';
 
 const getClients = async () => {
+    
     try {
-        const response = await Clients.get('', {
-            headers: {
-                Authorization: getToken(),
-            }
-        });
+        const response = await axios.get('clients');
         return response.data;
     } catch (error) {
         throw new Error(error);
@@ -16,7 +12,7 @@ const getClients = async () => {
 
 const createClient = async (client) => {
     try {
-        const response = await Clients.post('/save', client);
+        const response = await axios.post('clients/save', client);
         return response.data;
     } catch (error) {
         throw new Error(error);
@@ -25,7 +21,7 @@ const createClient = async (client) => {
 
 const getClientById = async (clientId) => {
     try {
-        const response = await Clients.get(`/${clientId}`);
+        const response = await axios.get(`clients/${clientId}`);
         return response.data;
     } catch (error) {
         throw new Error(error);
@@ -34,7 +30,7 @@ const getClientById = async (clientId) => {
 
 const updateClient = async (clientId, client) => {
     try {
-        const response = await Clients.put(`/${clientId}`, client);
+        const response = await axios.put(`clients/${clientId}`, client);
         return response.data;
     } catch (error) {
         throw new Error(error);
@@ -43,7 +39,7 @@ const updateClient = async (clientId, client) => {
 
 const deleteClient = async (clientId) => {
     try {
-        const response = await Clients.delete(`/${clientId}`);
+        const response = await axios.delete(`clients/${clientId}`);
         return response.data;
     } catch (error) {
         throw new Error(error);

@@ -3,6 +3,7 @@ import './index.css'
 import logo from '../../../image/logo.png';
 import { FaRegUserCircle } from "react-icons/fa"
 import {useNavigate } from 'react-router-dom';
+import { cleanToken } from '../../../API/token-service/token';
 const Navigation = () => {
   const navigate = useNavigate();
   return (
@@ -15,7 +16,9 @@ const Navigation = () => {
         <span className="notification-icon">
         </span>
           <span className="username">irfan</span>
-          <span className='userIcon' onClick={()=>{navigate('/login')}}><FaRegUserCircle /></span>
+          <span className='userIcon' onClick={()=>{
+            cleanToken();
+            navigate('/login')}}><FaRegUserCircle /></span>
       </div>
     </nav>
   )

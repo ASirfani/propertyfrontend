@@ -4,15 +4,20 @@ import Sidebar from './Sidebar';
 import './index.css';
 
 import { Outlet, useNavigate } from 'react-router-dom';
-import { getToken } from '../../API/token-service/token';
 
 const AdminLayout = () => {
   const navigate = useNavigate()
   useEffect(() => {
-    if (!getToken) {
-      navigate('/login');
-      return;
+
+    console.log("READING TOKEN....");
+    const tokenString = localStorage.getItem('token');
+    if (!tokenString) {
+    console.log('TOKEN NOT FOUND.....')
+        navigate('/login');
+        return;
     }
+    console.log("TOKEN IS FOUND")
+
   })
 
 
