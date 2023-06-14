@@ -1,30 +1,47 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Navigation from './Navigation';
 import Sidebar from './Sidebar';
 import './index.css';
-
 import { Outlet, useNavigate } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
+import axios from 'axios';
 
 const AdminLayout = () => {
   const navigate = useNavigate()
-  useEffect(() => {
+  const [username,setUsername] = useState();
 
-    console.log("READING TOKEN....");
+  const check = async (id, name) => {
+    try {
+      const response = await axios.post('http://localhost:1111/supplier/check', {
+        id: id,
+        name: name,
+      });
+      const data = response.data;
+      if (!data.success) {
+        navigate('/*');
+      }
+    } catch (error) {
+      console.log('Error:', error);
+    }
+  };
+
+  useEffect(() => {
     const tokenString = localStorage.getItem('token');
     if (!tokenString) {
-    console.log('TOKEN NOT FOUND.....')
-        navigate('/login');
-        return;
+      navigate('/login');
+      return;
+    } else {
+      const decodedToken = jwt_decode(tokenString);
+      setUsername(decodedToken.name)
+      check(decodedToken.id, decodedToken.name);
     }
-    console.log("TOKEN IS FOUND")
-
-  })
+  });
 
 
   return (
     <div className="admin">
       <header>
-        <Navigation />
+        <Navigation name={username} />
       </header>
       <aside>
         <Sidebar />

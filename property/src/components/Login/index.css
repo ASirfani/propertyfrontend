@@ -1,11 +1,12 @@
 .imgBg {
-  background-image: url('../../../public/Loginbg.jpg');
+  background-image: url('../../../public/bglogo.jpg');
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #F7F7F5;
 }
 
 .colorBg {
@@ -28,6 +29,7 @@
 }
 
 .login h2 {
+  font-family: 'Times New Roman', serif;
   margin-bottom: 20px;
   color: #fff;
 }
